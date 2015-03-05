@@ -102,3 +102,31 @@ sys_halt(void)
     outw(0xB004, 0x2000);
   return 0;
 }
+
+int sys_signal_register(void)
+{
+    uint signum;
+    sighandler_t handler;
+    int n;
+
+    if (argint(0, &n) < 0)
+      return -1;
+    signum = (uint) n;
+
+    if (argint(1, &n) < 0)
+      return -1;
+    handler = (sighandler_t) n;
+
+    return (int) signal_register_handler(signum, handler);
+}
+
+int sys_signal_restorer(void)
+{
+    int restorer_addr;
+    if (argint(0, &restorer_addr) < 0)
+      return -1;
+
+    proc->restorer_addr = (uint) restorer_addr;
+    
+    return 0;
+}

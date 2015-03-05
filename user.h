@@ -24,6 +24,8 @@ char* sbrk(int);
 int sleep(int);
 int uptime(void);
 int halt(void);
+int signal_register(int, void(*)(int));
+int signal_restorer(void(*)(void));
 
 // ulib.c
 int stat(char*, struct stat*);
@@ -38,3 +40,4 @@ void* memset(void*, int, uint);
 void* malloc(uint);
 void free(void*);
 int atoi(const char*);
+int signal(int, void(*)(int));
