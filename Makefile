@@ -83,7 +83,7 @@ LDFLAGS += -m $(shell $(LD) -V | grep elf_i386 2>/dev/null)
 
 xv6.img: bootblock kernel fs.img
 	dd if=/dev/zero of=xv6.img count=10000
-	dd if=bootblock of=xv6.img conv=notrunc
+	 if=bootblock of=xv6.img conv=notrunc
 	dd if=kernel of=xv6.img seek=1 conv=notrunc
 
 xv6memfs.img: bootblock kernelmemfs
@@ -174,6 +174,9 @@ UPROGS=\
 	_zombie\
 	_shutdown\
 	_signal_test\
+	_test_mprotect\
+	_test_cow\
+#	_test_demandalloc\
 
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)
