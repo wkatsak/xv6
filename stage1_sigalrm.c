@@ -17,8 +17,6 @@ void handle_signal(siginfo_t info)
 
 int main(int argc, char *argv[])
 {
-	int x = 5;
-	int y = 0;
 	int start = uptime();
 
 	signal(SIGALRM, handle_signal);

@@ -16,9 +16,6 @@ int main(void)
     
     signal(SIGALRM, handle_signal);
 
-    int x = 5;
-    int y = 0;
-
     ecx = 5;
 
     alarm(1);
