@@ -3,6 +3,11 @@
 #include "user.h"
 #include "signal.h"
 
+void dummy(void)
+{
+	printf("TEST FAILED: this should never execute.\n");
+}
+
 void handle_signal(siginfo_t info)
 {
 	printf(1, "Caught signal %d...\n", info.signum);

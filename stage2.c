@@ -4,6 +4,11 @@
 
 volatile int flag = 0;
 
+void dummy(void)
+{
+    printf("TEST FAILED: this should never execute.\n");
+}
+
 void handle_signal(siginfo_t info)
 {
     __asm__ ("movl $0x0,%ecx\n\t");
