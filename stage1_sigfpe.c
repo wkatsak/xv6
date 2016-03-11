@@ -5,7 +5,7 @@
 
 void dummy(void)
 {
-	printf("TEST FAILED: this should never execute.\n");
+	printf(1, "TEST FAILED: this should never execute.\n");
 }
 
 void handle_signal(siginfo_t info)
