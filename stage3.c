@@ -3,7 +3,7 @@
 #include "user.h"
 #include "signal.h"
 
-void handle_signal(int signum)
+void handle_signal(siginfo_t info)
 {
 
 }
