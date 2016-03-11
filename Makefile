@@ -175,6 +175,7 @@ UPROGS=\
 	_shutdown\
 #	_stage1_sigfpe\
 #	_stage1_sigalrm\
+#	_stage1_nested\
 #	_stage2\
 #	_stage3\
 
