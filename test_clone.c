@@ -85,6 +85,12 @@ int main(int argc, char **argv)
 		printf(1, "TEST FAILED!\n");
 	}
 
+	// Clean up memory
+	for (i=0; i<NUM_THREADS; i++) {
+		free(stacks[i]);
+		free(args[i]);
+	}
+
 	// Exit
 	exit();
 }

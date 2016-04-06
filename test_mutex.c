@@ -60,7 +60,7 @@ int main(int argc, char **argv)
 	// Allocate stacks and args and make sure we have them all
 	// Bail if something fails
 	for (i=0; i<NUM_THREADS; i++) {
-		args[i] = (int*) malloc(4);
+		args[i] = (int*) malloc(sizeof(int));
 		if (!args[i]) {
 			printf(1, "main: could not get memory (for arg) for thread %d, exiting...\n");
 			exit();
@@ -95,6 +95,11 @@ int main(int argc, char **argv)
 
 	// Clean up mutex
 	pthread_mutex_destroy(&mutex);
+
+	// Clean up memory
+	for (i=0; i<NUM_THREADS; i++) {
+		free(args[i]);
+	}
 
 	// Exit
 	exit();
