@@ -89,3 +89,31 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+int sys_sigregister(void)
+{
+  int tmp;
+  int signum;
+  void *handler;
+  void *trampoline;
+
+  if (argint(0, &tmp) < 0)
+    return -1;
+  signum = tmp;
+
+  if (argint(1, &tmp) < 0)
+    return -1;
+  handler = (void*) tmp;
+
+  if (argint(2, &tmp) < 0)
+    return -1;
+  trampoline = (void*) tmp;
+
+  return (int) signal_register_handler(signum, handler, trampoline);
+}
+
+int sys_sigreturn(void)
+{
+  signal_return();
+  return 0;
+}

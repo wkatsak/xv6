@@ -475,3 +475,32 @@ procdump(void)
     cprintf("\n");
   }
 }
+
+// This function saves the pointer to the user's signal handler (as well as the signal
+// trampoline) in the proc struct.
+sighandler_t signal_register_handler(int signum, sighandler_t handler, void *trampoline)
+{
+  if (!proc)
+    return (sighandler_t) -1;
+
+  sighandler_t previous = proc->signal_handlers[signum];
+
+  proc->signal_handlers[signum] = handler;
+  proc->signal_trampoline = trampoline;
+
+  return previous;
+}
+
+// This function must add the signal frame to the process stack, including saving
+// the volatile registers (eax, ecx, edx) on the stack.
+void signal_deliver(int signum)
+{
+
+}
+
+// This function must clean up the signal frame from the stack and restore the volatile
+// registers (eax, ecx, edx).
+void signal_return(void)
+{
+
+}
