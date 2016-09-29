@@ -82,10 +82,7 @@ trap(struct trapframe *tf)
       cprintf("NO SIG HANDLER REGISTERED");
     
     break;
-  case T_IRQ0 + T_FPERR:
-    if (proc->signalhandlers[SIGFPE] == 0)
-      cprintf("NO SIG HANDLER REGISTERED");
-    break;
+
 
 
   //PAGEBREAK: 13
