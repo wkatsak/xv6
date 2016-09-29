@@ -58,7 +58,7 @@ trap(struct trapframe *tf)
     break;
   case T_IRQ0 + IRQ_IDE:
     ideintr();
-    lapiceoi();
+    lapiceoi();T_FPERR:
     break;
   case T_IRQ0 + IRQ_IDE+1:
     // Bochs generates spurious IDE1 interrupts.
@@ -77,6 +77,16 @@ trap(struct trapframe *tf)
             cpunum(), tf->cs, tf->eip);
     lapiceoi();
     break;
+  case T_IRQ0 + T_DIVIDE:
+    if (proc->signalhandlers[SIGFPE] == 0)
+      cprintf("NO SIG HANDLER REGISTERED");
+    
+    break;
+  case T_IRQ0 + T_FPERR:
+    if (proc->signalhandlers[SIGFPE] == 0)
+      cprintf("NO SIG HANDLER REGISTERED");
+    break;
+
 
   //PAGEBREAK: 13
   default:
