@@ -498,6 +498,19 @@ void signal_deliver(int signum)
 
 }
 
+//saves proc registers (eax, ecx, edx) into trapframe for signal call
+//need to save 24 bits on the stack
+void save_registers()
+{
+  proc->tf->esp -4  = proc->tf->eip
+  proc->tf->esp -8  = proc->tf->eax
+  proc->tf->esp -12 = proc->tf->eax
+  proc->tf->esp -16 = proc->tf->eax
+  proc->tf->esp -20 = proc->tf->eax
+  proc->tf->esp -24 = proc->tf->eax
+
+
+}
 // This function must clean up the signal frame from the stack and restore the volatile
 // registers (eax, ecx, edx).
 void signal_return(void)
